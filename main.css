@@ -1,3 +1,4 @@
+/*Removing space below jumbotron. */
 .jumbotron {
   margin-bottom: 0px;
 }
