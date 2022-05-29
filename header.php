@@ -11,7 +11,7 @@
 <body>
 
 <!-- Start of Navbar-->
-<nav class="navbar navbar-expand-lg navbar-primary bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Kam's School of Flight</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -39,14 +39,14 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>
   <!-- End of Navbar-->
 
     <!-- Start of Jumbotron-->
-    <div class="jumbotron text-center text-primary">
+    <div class="jumbotron text-center text-dark bg-secondary">
       <h1>Kam's School of Flight</h1>
       <p>Come learn to fly with some of the worlds leading instructors!</p>
     </div>
