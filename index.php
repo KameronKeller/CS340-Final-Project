@@ -1,4 +1,15 @@
 <?php include 'header.php' ?>
+<?php
+include './config.php';
+
+$connection =  new mysqli($database_hostname, $database_username, $database_password, $database_db_name, $database_port);
+
+if(mysqli_connect_errno()) {
+  echo "Failed to connect";
+  $connection.die();
+}
+?>
+
   <div class="container">
     <table class="table mt-3">
       <thead>
