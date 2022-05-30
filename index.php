@@ -2,82 +2,47 @@
 <?php
 include './config.php';
 
-$connection =  new mysqli($database_hostname, $database_username, $database_password, $database_db_name, $database_port);
-
+$db =  new mysqli($database_hostname, $database_username, $database_password, $database_db_name, $database_port);
+/* */
 if(mysqli_connect_errno()) {
   echo "Failed to connect";
-  $connection.die();
+  $db.die();
+}
+$query = "SELECT Pid, Fname, Lname, Bday, Phone FROM PERSON;";
+
+$q = $db->query($query);
+?>
+<div class="container">
+  <table class="table mt-3">
+  <thead>
+        <th scope="col">ID</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Phone</th>
+      </thead>
+<?php 
+# While loop iterating over PERSONS returned from $query
+while ($t = $q->fetch_assoc()) {
+  $Fname = $t['Fname'];
+  $Lname = $t['Lname'];
+  $Bday = $t['Bday'];
+  $Phone = $t['Phone'];
+  $Pid = $t['Pid'];
+
+?>
+<tr>
+  <th scope="Row"><?=$Pid?></th>
+  <td><?=$Fname?></td>
+  <td><?=$Lname?></td>
+  <td><?=$Bday?></td>
+  <td><?=$Phone?></td>
+</tr>
+<?php
 }
 ?>
+  </table>
+</div>
 
-  <div class="container">
-    <table class="table mt-3">
-      <thead>
-        <th scope="col">PHP VARIABLE</th>
-        <th scope="col">PHP VARIABLE</th>
-        <th scope="col">PHP VARIABLE</th>
-        <th scope="col">PHP VARIABLE</th>
-        <th scope="col">PHP VARIABLE</th>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">ID</th>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-        </tr>
-        <tr>
-          <th scope="row">ID</th>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-        </tr>
-        <tr>
-          <th scope="row">ID</th>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-        </tr>
-        <tr>
-          <th scope="row">ID</th>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-        </tr>
-        <tr>
-          <th scope="row">ID</th>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-        </tr>
-        <tr>
-          <th scope="row">ID</th>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-        </tr>
-        <tr>
-          <th scope="row">ID</th>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-        </tr>
-        <tr>
-          <th scope="row">ID</th>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-          <td>PHP VAR VALUE</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 <?php include 'footer.php'?>
-
+<?php mysqli_close($db)?>

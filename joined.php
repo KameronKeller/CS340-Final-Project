@@ -14,9 +14,9 @@ $string = "INSERT INTO PERSON (Fname, Lname, Bday, Phone, Street, City, State, E
 
 echo $string;
 
-//$pid = $db->nextID('PERSON');
+
 $q = $db->query($string);
 
-
+mysqli_close($db);
 header("Location: /thanks.php")
 ?>
