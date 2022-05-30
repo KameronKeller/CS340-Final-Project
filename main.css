@@ -1,6 +1,7 @@
-/*Removing space below jumbotron. */
+/*Removing space below jumbotron and removing radius. */
 .jumbotron {
   margin-bottom: 0px;
+  border-radius: 0px;
 }
 
 .text-black {
