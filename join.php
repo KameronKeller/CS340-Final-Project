@@ -26,7 +26,7 @@
         
          <!-- Phone Number -->
         <label for="Phone_number">Phone Number:</label><br>
-        <input type="text" name="Phone" placeholder="1231231234" maxlength="10"   minlength="10" required><br>
+        <input type="text" name="Phone" placeholder="1112224444" maxlength="10"   minlength="10" required><br>
     </div>
   
     <div class="col">
@@ -50,17 +50,14 @@
         <input type="text" name="Email" placeholder="JohnDoe@Kamflightschool.com"   class="mb-3" required><br>
     </div>
   </div>
+
   <div class="row pt-4 pl-3">
       <button class="btn-lg btn-dark" type="submit" form="form" value="Submit">Submit</button>
   </div>
 
-
-
-
-
-    
-
-
     </form>
+    <!-- End of form -->
 </div>
+
+<!-- Footer -->
 <?php include "./footer.php" ?>

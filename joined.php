@@ -10,9 +10,8 @@ $_SESSION['POST'] = $_POST;
 $db =  new mysqli($database_hostname, $database_username, $database_password, $database_db_name, $database_port);
 
 # If the connection fails
-if(mysqli_connect_errno()) {
-  echo "Failed to connect";
-  $db.die();
+if(!$db) {
+  die("Failed: ".mysqli_connection_error());
 }
 
 # Creating query string

@@ -1,6 +1,8 @@
 <?php require './header.php'?>
 <?php
 session_start();
+
+
 $POST = $_SESSION['POST'];
 ?>
 <div class="container pt-4">
