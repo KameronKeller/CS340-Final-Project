@@ -9,7 +9,7 @@
 <div class="container pt-4">
   <div class="row">
     <div class="col d-flex justify-content-left">
-      <form action="./joined.php" method="POST">
+      <form action="./joined.php" method="POST" id="form">
         <label class="pt-3 font-weight-bold" >Contact Info:</label><BR>
     
         <!--First Name -->    
@@ -51,7 +51,7 @@
     </div>
   </div>
   <div class="row pt-4 pl-3">
-      <input type="submit">
+      <button class="btn-lg btn-dark" type="submit" form="form" value="Submit">Submit</button>
   </div>
 
 
