@@ -1,5 +1,6 @@
     <!-- Start of Footer-->
-    <footer class="footer mt-2 pb-3 pt-4 fixed-bottom text-light bg-dark">
+    <div class="mt-5 mb-5"></div>
+    <footer class="footer mt-2 pb-3 pt-3 fixed-bottom text-light bg-dark">
     <div class="inner text-center">
       <span class="text-center">Dalton Shults and Kameron Keller &copy; 2022</span>
     </div>
