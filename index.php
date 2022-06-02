@@ -32,24 +32,29 @@ while ($col = $q->fetch_field()) {
 while ($t = $q->fetch_assoc()) {
 ?>
 <tr>    
-<?php
-foreach ($t as $value) {
-?>
-<td><?=$value?></td>
-<?php
-}
+  <?php
+  foreach ($t as $value) {
+  ?>
+    <td><?=$value?></td>
+  <?php
+  # Closing for each bracket
+  }
 ?>
 </tr>
 
-<!--Closing bracket for while loop -->
+
 <?php
+# Closing while loop bracket
 }
 ?>
   </table>
 </div>
 
-<!-- Include footer -->
+<!-- Footer -->
 <?php include 'footer.php'?>
 
-<!-- Close database connection -->
-<?php mysqli_close($db)?>
+
+<?php
+#close database connection
+mysqli_close($db)
+?>
