@@ -1,18 +1,9 @@
 <!-- Include header -->
-<?php include 'header.php' ?>
-<?php
+<?php include 'header.php';
 
-# Connecting config file
-include './config.php';
+#Connecting to the database 
+include './connection.php';
 
-# Creating connection with config file
-$db =  new mysqli($database_hostname, $database_username, $database_password, $database_db_name, $database_port);
-
-# If there is a connection error die
-if(mysqli_connect_errno()) {
-  echo "Failed to connect";
-  $db.die();
-}
 # Else create query
 $query = "SELECT Pid, Fname, Lname, Bday, Phone FROM PERSON;";
 
@@ -39,20 +30,15 @@ while ($col = $q->fetch_field()) {
 # While loop iterating over PERSONS returned from $query
 # Creating table
 while ($t = $q->fetch_assoc()) {
-  $Fname = $t['Fname'];
-  $Lname = $t['Lname'];
-  $Bday = $t['Bday'];
-  $Phone = $t['Phone'];
-  $Pid = $t['Pid'];
-
 ?>
-<!--Creating table records for each PERSON -->
-<tr>
-  <th scope="Row"><?=$Pid?></th>
-  <td><?=$Fname?></td>
-  <td><?=$Lname?></td>
-  <td><?=$Bday?></td>
-  <td><?=$Phone?></td>
+<tr>    
+<?php
+foreach ($t as $value) {
+?>
+<td><?=$value?></td>
+<?php
+}
+?>
 </tr>
 
 <!--Closing bracket for while loop -->
