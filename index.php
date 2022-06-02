@@ -9,10 +9,10 @@ include './config.php';
 $db =  new mysqli($database_hostname, $database_username, $database_password, $database_db_name, $database_port);
 
 # If there is a connection error die
-if(!$db) {
-  die("Failed: ".mysqli_connection_error());
+if(mysqli_connect_errno()) {
+  echo "Failed to connect";
+  $db.die();
 }
-
 # Else create query
 $query = "SELECT Pid, Fname, Lname, Bday, Phone FROM PERSON;";
 
@@ -24,14 +24,18 @@ $q = $db->query($query);
 <div class="container">
   <table class="table mt-3">
     <thead>
-      <th scope="col">ID</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Birthday</th>
-      <th scope="col">Phone</th>
-    </thead>
-
 <?php 
+#Grabbing table col names, and appending them to 
+while ($col = $q->fetch_field()) {
+  $name = $col->name;
+?>
+<th scope="col"><?=$name?></th>
+<?php
+}
+?>
+  </thead>
+<?php
+
 # While loop iterating over PERSONS returned from $query
 # Creating table
 while ($t = $q->fetch_assoc()) {
