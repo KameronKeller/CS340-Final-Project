@@ -12,7 +12,7 @@ $q = $db->query($query);
 while ($col = $q->fetch_field()) {
   $name = $col->name;
 ?>
-<th scope="col"><?=$name?></th>
+    <th scope="col"><?=ucwords($name)?></th>
 <?php
 }
 ?>
