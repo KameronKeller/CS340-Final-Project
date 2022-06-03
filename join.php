@@ -22,7 +22,7 @@
     
         <!--Date --> 
         <label for="Date">Birthdate:</label><br>
-        <input type="text" name="Bday" placeholder="DD/MM/YYYY" required><br>
+        <input type="text" name="Bday" placeholder="YYYY-MM-DD (Format must match)" required><br>
         
          <!-- Phone Number -->
         <label for="Phone_number">Phone Number:</label><br>

@@ -15,7 +15,7 @@ if(!$db) {
 }
 
 # Creating query string
-$string = "INSERT INTO PERSON (Fname, Lname, Bday, Phone, Street, City, State, Email) VALUES ('$_POST[Fname]', '$_POST[Lname]', '$_POST[Bday]', '$_POST[Phone]', '$_POST[Street]', '$_POST[City]', '$_POST[State]', '$_POST[Email]');";
+$string = "INSERT INTO PERSON (Fname, Lname, Birthday, Phone, Email, Street, City, State) VALUES ('$_POST[Fname]', '$_POST[Lname]', '$_POST[Bday]', '$_POST[Phone]', '$_POST[Street]', '$_POST[City]', '$_POST[Email]', '$_POST[State]');";
 
 # Echo for testing
 echo $string;
@@ -27,5 +27,5 @@ $q = $db->query($string);
 mysqli_close($db);
 
 # Redirect to thanks.php
-header("Location: /thanks.php")
+#header("Location: /thanks.php")
 ?>

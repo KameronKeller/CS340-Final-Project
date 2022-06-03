@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS PERSON (
   Pid        INTEGER        NOT NULL AUTO_INCREMENT,
-  Fname      VARCHAR(20)    NOT NULL,
-  Lname      VARCHAR(20)    NOT NULL,
-  Birthday   TEXT,
+  Fname      VARCHAR(30)    NOT NULL,
+  Lname      VARCHAR(30)    NOT NULL,
+  Birthday   DATE,
   Phone      CHAR(10)       NOT NULL,
-  Street     VARCHAR(20)    NOT NULL,
-  City       VARCHAR(20)    NOT NULL,
-  State      VARCHAR(20)    NOT NULL,
   Email      VARCHAR(254)   NOT NULL,
+  Street     VARCHAR(30)    NOT NULL,
+  City       VARCHAR(30)    NOT NULL,
+  State      VARCHAR(30)    NOT NULL,
   PRIMARY KEY (Pid)
   );
 
@@ -18,10 +18,10 @@ CREATE TABLE IF NOT EXISTS PILOT_EXAMINER (
 );
 
 CREATE TABLE IF NOT EXISTS EXAMINER_AUTHORIZATION (
-  Pid          INTEGER    NOT NULL,
+  Examiner          INTEGER    NOT NULL,
   Cert_type    INTEGER    NOT NULL,
-  PRIMARY KEY (Pid, Cert_type),
-  FOREIGN KEY(Pid) REFERENCES PILOT_EXAMINER(Pid),
+  PRIMARY KEY (Examiner, Cert_type),
+  FOREIGN KEY(Examiner) REFERENCES PILOT_EXAMINER(Pid),
   FOREIGN KEY(Cert_type) REFERENCES CERT_TYPE(Ceid)
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS INSTRUCTOR_AUTHORIZATION (
 
 CREATE TABLE IF NOT EXISTS INSTRUCTOR (
   Pid            INTEGER        NOT NULL,
-  Specialty      VARCHAR(20)    NOT NULL,
+  Specialization VARCHAR(30)    NOT NULL,
   PRIMARY KEY (Pid),
   FOREIGN KEY (Pid) REFERENCES EMPLOYEE(Pid)
 );
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS CERTIFICATION (
 
 CREATE TABLE IF NOT EXISTS CERT_TYPE (
   Ceid             INTEGER        NOT NULL,
-  Name             VARCHAR(20)    NOT NULL,
+  Name             VARCHAR(50)    NOT NULL,
   Is_helicopter    INTEGER        NOT NULL,
   Is_airplane      INTEGER        NOT NULL,
   PRIMARY KEY (Ceid)
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS TRAINING_SESSION (
 
 CREATE TABLE IF NOT EXISTS COURSE_TYPE (
   Ctid              INTEGER        NOT NULL AUTO_INCREMENT,
-  Cname             VARCHAR(30)    NOT NULL,
+  Cname             VARCHAR(60)    NOT NULL,
   Required_hours    INTEGER        NOT NULL,
   Cost              INTEGER        NOT NULL,
   Cert_type         INTEGER        NOT NULL,
@@ -117,13 +117,13 @@ CREATE TABLE IF NOT EXISTS COURSE_LESSONS (
 
 CREATE TABLE IF NOT EXISTS LESSON (
   Lid         INTEGER        NOT NULL,
-  L_name      VARCHAR(30)    NOT NULL,
+  L_name      VARCHAR(60)    NOT NULL,
   PRIMARY KEY (Lid)
 );
 
 CREATE TABLE IF NOT EXISTS LESSON_TASKS (
   Lid        INTEGER         NOT NULL,
-  Task_name  VARCHAR(30)     NOT NULL,
+  Task_name  VARCHAR(80)     NOT NULL,
   PRIMARY KEY (Lid, Task_name),
   FOREIGN KEY (Lid) REFERENCES LESSON(Lid)
 );
@@ -140,60 +140,60 @@ CREATE TABLE IF NOT EXISTS AIRCRAFT (
 );
 
 
-INSERT INTO "PERSON" ("Pid","Fname","Lname","Birthday","Phone","Email","Street","City","State")
+INSERT INTO PERSON (Pid,Fname,Lname,Birthday,Phone,Email,Street,City,State)
 VALUES
-(1, 'Tobit', 'Danielian', '1973-01-10', '650-350-8206', 'tdanielian0@washington.edu', '1 Nelson Place', 'Eugene', 'Oregon'),
-(31, 'Osbert', 'Wollrauch', '1987-09-06', '256-628-4426', 'owollrauchu@businessweek.com', '99731 Mariners Cove Avenue', 'Bend', 'Oregon'),
-(4, 'Clemmy', 'Rizzello', '1956-10-27', '859-319-5574', 'crizzello3@comsenz.com', '6 Manley Alley', 'Bend', 'Oregon'),
-(5, 'Georgette', 'Riply', '1988-10-23', '214-914-1938', 'griply4@youtu.be', '56447 Mcbride Point', 'Prineville', 'Oregon'),
-(12, 'Elston', 'Rasch', '1994-12-17', '302-590-9098', 'eraschb@theguardian.com', '05865 Merry Junction', 'Bend', 'Oregon'),
-(7, 'Bill', "O'Deegan", '1965-04-21', '530-904-3015', 'bodeegan6@microsoft.com', '444 Towne Lane', 'Redmond', 'Oregon'),
-(2, 'Gallagher', 'Mayston', '1970-12-02', '216-778-6014', 'gmayston1@storify.com', '08 Swallow Court', 'Prineville', 'Oregon'),
-(13, 'Alane', 'Letteresse', '1982-05-27', '408-827-4202', 'aletteressec@google.it', '69 Raven Terrace', 'Bend', 'Oregon'),
-(3, 'Ransom', 'Karolczyk', '1956-08-20', '570-311-4986', 'rkarolczyk2@newsvine.com', '873 Mosinee Crossing', 'Redmond', 'Oregon'),
-(10, 'Timothea', 'Sturge', '1980-04-15', '206-774-9707', 'tsturge9@gmpg.org', '4 Calypso Lane', 'Portland', 'Oregon'),
-(6, 'Bordie', 'Fautly', '1989-11-26', '401-159-3589', 'bfautly5@1688.com', '486 Pond Terrace', 'Bend', 'Oregon'),
-(47, 'Jasper', 'Emmer', '1995-12-22', '919-411-3986', 'jemmer1a@cargocollective.com', '09725 Darwin Trail', 'Redmond', 'Oregon'),
-(9, 'Hanny', 'Ellcome', '2000-03-31', '469-753-6207', 'hellcome8@china.com.cn', '59 Crescent Oaks Lane', 'Prineville', 'Oregon'),
-(14, 'Egbert', 'Favelle', '2000-02-04', '719-104-2812', 'efavelled@imgur.com', '70696 Jenifer Center', 'Colorado Springs', 'Colorado'),
-(15, 'Mallissa', 'Allgood', '1963-03-20', '925-193-3608', 'mallgoode@t-online.de', '12 Pine View Alley', 'Hayward', 'California'),
-(16, 'Hertha', 'Kibard', '1964-09-28', '478-338-6069', 'hkibardf@zdnet.com', '04 Elka Drive', 'Macon', 'Georgia'),
-(17, 'Deidre', 'Giacovetti', '1960-10-09', '313-880-1339', 'dgiacovettig@ucoz.com', '78 Bonner Place', 'Detroit', 'Michigan'),
-(18, 'Allix', 'Gallier', '1957-07-25', '614-251-6978', 'agallierh@boston.com', '8138 Judy Street', 'Columbus', 'Ohio'),
-(19, 'Belia', 'Patzelt', '1996-02-25', '402-751-3107', 'bpatzelti@elpais.com', '079 Kennedy Plaza', 'Omaha', 'Nebraska'),
-(20, 'Lancelot', 'Emanuele', '1970-02-14', '863-533-6593', 'lemanuelej@webnode.com', '50 Dovetail Terrace', 'Lehigh Acres', 'Florida'),
-(21, 'Cesya', 'Benck', '1983-07-24', '901-491-1495', 'cbenckk@creativecommons.org', '6995 Delaware Drive', 'Corvallis', 'Oregon'),
-(22, 'Ulick', 'Bakey', '1969-02-22', '727-656-5823', 'ubakeyl@netvibes.com', '0285 Holmberg Center', 'Klamath Falls', 'Oregon'),
-(23, 'Mal', 'Grabban', '1984-06-09', '806-873-3784', 'mgrabbanm@netscape.com', '52514 Vahlen Avenue', 'Amarillo', 'Texas'),
-(24, 'Letizia', 'Meaddowcroft', '1961-03-05', '408-944-2688', 'lmeaddowcroftn@deliciousdays.com', '2 Swallow Place', 'San Jose', 'California'),
-(25, 'Sully', 'Sugden', '1966-06-15', '202-703-7252', 'ssugdeno@icq.com', '1610 Aberg Point', 'Washington', 'District of Columbia'),
-(26, 'Allsun', 'Petche', '1979-09-03', '818-302-6631', 'apetchep@mysql.com', '22982 Pankratz Crossing', 'North Hollywood', 'California'),
-(27, 'Cesaro', 'Pitbladdo', '1978-05-18', '904-351-5153', 'cpitbladdoq@reddit.com', '4 Kipling Crossing', 'Jacksonville', 'Florida'),
-(28, 'Ardyth', 'Jikovsky', '1957-02-17', '813-258-3681', 'ajikovskyr@soup.io', '079 Pennsylvania Way', 'Tampa', 'Florida'),
-(29, 'Astrix', 'Binge', '1972-11-11', '651-826-1440', 'abinges@cyberchimps.com', '82 Washington Alley', 'Minneapolis', 'Minnesota'),
-(30, 'Ikey', 'Hourihane', '1956-02-02', '256-856-1669', 'ihourihanet@technorati.com', '4 Hagan Park', 'Anniston', 'Alabama'),
-(8, 'Muffin', 'Coulsen', '1974-06-13', '312-536-0888', 'mcoulsen7@naver.com', '995 Spaight Place', 'Bend', 'Oregon'),
-(32, 'Kiah', 'Gurry', '1966-07-19', '205-833-3573', 'kgurryv@webeden.co.uk', '5 Londonderry Junction', 'Birmingham', 'Alabama'),
-(33, 'Adrien', 'Swafield', '1951-10-26', '765-541-5114', 'aswafieldw@who.int', '5 Sunnyside Circle', 'Anderson', 'Indiana'),
-(34, 'Giustina', 'Toop', '1968-11-17', '215-692-4745', 'gtoopx@deviantart.com', '2323 Bay Hill', 'Philadelphia', 'Pennsylvania'),
-(35, 'Isa', 'Blucher', '1981-12-23', '765-522-7650', 'ibluchery@smh.com.au', '8 Killdeer Drive', 'Crawfordsville', 'Indiana'),
-(36, 'Belle', 'Rattrie', '1970-09-12', '518-158-3306', 'brattriez@jalbum.net', '2 Dunning Alley', 'Albany', 'New York'),
-(37, 'Paxon', 'Adam', '1975-04-08', '540-389-3535', 'padam10@toplist.cz', '56 Lakewood Gardens Center', 'Roanoke', 'Virginia'),
-(38, 'Athena', 'Francescotti', '1953-04-01', '812-978-3191', 'afrancescotti11@nba.com', '566 Del Mar Terrace', 'Evansville', 'Indiana'),
-(39, 'Wendeline', 'Shreve', '1956-02-09', '502-993-5477', 'wshreve12@nymag.com', '2767 Drewry Center', 'Louisville', 'Kentucky'),
-(40, 'Immanuel', 'Pocock', '1994-04-19', '615-346-6951', 'ipocock13@seesaa.net', '281 Golf Parkway', 'Nashville', 'Tennessee'),
-(41, 'Diane', 'Krug', '1990-03-24', '678-363-6755', 'dkrug14@hugedomains.com', '66429 Leroy Place', 'Gainesville', 'Georgia'),
-(42, 'Grantley', 'Phippin', '1972-07-01', '212-107-4659', 'gphippin15@issuu.com', '2958 Del Sol Trail', 'New York City', 'New York'),
-(43, 'Harriott', 'Cissen', '1981-10-02', '202-741-9846', 'hcissen16@spiegel.de', '8534 Truax Street', 'Redmond', 'Oregon'),
-(44, 'Niels', 'Moyse', '1961-04-23', '501-409-0826', 'nmoyse17@w3.org', '4 Main Circle', 'Hot Springs National Park', 'Arkansas'),
-(45, 'Leupold', 'Haitlie', '1974-10-30', '404-236-3424', 'lhaitlie18@webnode.com', '63539 Mcbride Plaza', 'Atlanta', 'Georgia'),
-(46, 'Jacqueline', 'Blaydon', '1976-11-19', '425-129-9808', 'jblaydon19@skype.com', '249 Vernon Drive', 'Everett', 'Washington'),
-(11, 'Udall', 'Cardinale', '1956-08-29', '619-130-5217', 'ucardinalea@deliciousdays.com', '7891 Nancy Hill', 'Redmond', 'Oregon'),
-(48, 'Bartie', 'Foottit', '1985-05-02', '702-744-2013', 'bfoottit1b@wikipedia.org', '64288 Meadow Ridge Center', 'Las Vegas', 'Nevada'),
-(49, 'Ernestus', 'Rolls', '1960-12-15', '785-158-7255', 'erolls1c@stumbleupon.com', '4 Vera Plaza', 'Bend', 'Oregon'),
-(50, 'Isabel', 'MacDermott', '1985-08-12', '979-838-0196', 'imacdermott1d@yahoo.com', '61657 Lakewood Trail', 'Bryan', 'Texas');
+(1, 'Tobit', 'Danielian', '1973-01-10', '6503508206', 'tdanielian0@washington.edu', '1 Nelson Place', 'Eugene', 'Oregon'),
+(31, 'Osbert', 'Wollrauch', '1987-09-06', '2566284426', 'owollrauchu@businessweek.com', '99731 Mariners Cove Avenue', 'Bend', 'Oregon'),
+(4, 'Clemmy', 'Rizzello', '1956-10-27', '8593195574', 'crizzello3@comsenz.com', '6 Manley Alley', 'Bend', 'Oregon'),
+(5, 'Georgette', 'Riply', '1988-10-23', '2149141938', 'griply4@youtu.be', '56447 Mcbride Point', 'Prineville', 'Oregon'),
+(12, 'Elston', 'Rasch', '1994-12-17', '3025909098', 'eraschb@theguardian.com', '05865 Merry Junction', 'Bend', 'Oregon'),
+(7, 'Bill', 'Deegan', '1965-04-21', '5309043015', 'bodeegan6@microsoft.com', '444 Towne Lane', 'Redmond', 'Oregon'),
+(2, 'Gallagher', 'Mayston', '1970-12-02', '2167786014', 'gmayston1@storify.com', '08 Swallow Court', 'Prineville', 'Oregon'),
+(13, 'Alane', 'Letteresse', '1982-05-27', '4088274202', 'aletteressec@google.it', '69 Raven Terrace', 'Bend', 'Oregon'),
+(3, 'Ransom', 'Karolczyk', '1956-08-20', '5703114986', 'rkarolczyk2@newsvine.com', '873 Mosinee Crossing', 'Redmond', 'Oregon'),
+(10, 'Timothea', 'Sturge', '1980-04-15', '2067749707', 'tsturge9@gmpg.org', '4 Calypso Lane', 'Portland', 'Oregon'),
+(6, 'Bordie', 'Fautly', '1989-11-26', '4011593589', 'bfautly5@1688.com', '486 Pond Terrace', 'Bend', 'Oregon'),
+(47, 'Jasper', 'Emmer', '1995-12-22', '9194113986', 'jemmer1a@cargocollective.com', '09725 Darwin Trail', 'Redmond', 'Oregon'),
+(9, 'Hanny', 'Ellcome', '2000-03-31', '4697536207', 'hellcome8@china.com.cn', '59 Crescent Oaks Lane', 'Prineville', 'Oregon'),
+(14, 'Egbert', 'Favelle', '2000-02-04', '7191042812', 'efavelled@imgur.com', '70696 Jenifer Center', 'Colorado Springs', 'Colorado'),
+(15, 'Mallissa', 'Allgood', '1963-03-20', '9251933608', 'mallgoode@t-online.de', '12 Pine View Alley', 'Hayward', 'California'),
+(16, 'Hertha', 'Kibard', '1964-09-28', '4783386069', 'hkibardf@zdnet.com', '04 Elka Drive', 'Macon', 'Georgia'),
+(17, 'Deidre', 'Giacovetti', '1960-10-09', '3138801339', 'dgiacovettig@ucoz.com', '78 Bonner Place', 'Detroit', 'Michigan'),
+(18, 'Allix', 'Gallier', '1957-07-25', '6142516978', 'agallierh@boston.com', '8138 Judy Street', 'Columbus', 'Ohio'),
+(19, 'Belia', 'Patzelt', '1996-02-25', '4027513107', 'bpatzelti@elpais.com', '079 Kennedy Plaza', 'Omaha', 'Nebraska'),
+(20, 'Lancelot', 'Emanuele', '1970-02-14', '8635336593', 'lemanuelej@webnode.com', '50 Dovetail Terrace', 'Lehigh Acres', 'Florida'),
+(21, 'Cesya', 'Benck', '1983-07-24', '9014911495', 'cbenckk@creativecommons.org', '6995 Delaware Drive', 'Corvallis', 'Oregon'),
+(22, 'Ulick', 'Bakey', '1969-02-22', '7276565823', 'ubakeyl@netvibes.com', '0285 Holmberg Center', 'Klamath Falls', 'Oregon'),
+(23, 'Mal', 'Grabban', '1984-06-09', '8068733784', 'mgrabbanm@netscape.com', '52514 Vahlen Avenue', 'Amarillo', 'Texas'),
+(24, 'Letizia', 'Meaddowcroft', '1961-03-05', '4089442688', 'lmeaddowcroftn@deliciousdays.com', '2 Swallow Place', 'San Jose', 'California'),
+(25, 'Sully', 'Sugden', '1966-06-15', '2027037252', 'ssugdeno@icq.com', '1610 Aberg Point', 'Washington', 'District of Columbia'),
+(26, 'Allsun', 'Petche', '1979-09-03', '8183026631', 'apetchep@mysql.com', '22982 Pankratz Crossing', 'North Hollywood', 'California'),
+(27, 'Cesaro', 'Pitbladdo', '1978-05-18', '9043515153', 'cpitbladdoq@reddit.com', '4 Kipling Crossing', 'Jacksonville', 'Florida'),
+(28, 'Ardyth', 'Jikovsky', '1957-02-17', '8132583681', 'ajikovskyr@soup.io', '079 Pennsylvania Way', 'Tampa', 'Florida'),
+(29, 'Astrix', 'Binge', '1972-11-11', '6518261440', 'abinges@cyberchimps.com', '82 Washington Alley', 'Minneapolis', 'Minnesota'),
+(30, 'Ikey', 'Hourihane', '1956-02-02', '2568561669', 'ihourihanet@technorati.com', '4 Hagan Park', 'Anniston', 'Alabama'),
+(8, 'Muffin', 'Coulsen', '1974-06-13', '3125360888', 'mcoulsen7@naver.com', '995 Spaight Place', 'Bend', 'Oregon'),
+(32, 'Kiah', 'Gurry', '1966-07-19', '2058333573', 'kgurryv@webeden.co.uk', '5 Londonderry Junction', 'Birmingham', 'Alabama'),
+(33, 'Adrien', 'Swafield', '1951-10-26', '7655415114', 'aswafieldw@who.int', '5 Sunnyside Circle', 'Anderson', 'Indiana'),
+(34, 'Giustina', 'Toop', '1968-11-17', '2156924745', 'gtoopx@deviantart.com', '2323 Bay Hill', 'Philadelphia', 'Pennsylvania'),
+(35, 'Isa', 'Blucher', '1981-12-23', '7655227650', 'ibluchery@smh.com.au', '8 Killdeer Drive', 'Crawfordsville', 'Indiana'),
+(36, 'Belle', 'Rattrie', '1970-09-12', '5181583306', 'brattriez@jalbum.net', '2 Dunning Alley', 'Albany', 'New York'),
+(37, 'Paxon', 'Adam', '1975-04-08', '5403893535', 'padam10@toplist.cz', '56 Lakewood Gardens Center', 'Roanoke', 'Virginia'),
+(38, 'Athena', 'Francescotti', '1953-04-01', '8129783191', 'afrancescotti11@nba.com', '566 Del Mar Terrace', 'Evansville', 'Indiana'),
+(39, 'Wendeline', 'Shreve', '1956-02-09', '5029935477', 'wshreve12@nymag.com', '2767 Drewry Center', 'Louisville', 'Kentucky'),
+(40, 'Immanuel', 'Pocock', '1994-04-19', '6153466951', 'ipocock13@seesaa.net', '281 Golf Parkway', 'Nashville', 'Tennessee'),
+(41, 'Diane', 'Krug', '1990-03-24', '6783636755', 'dkrug14@hugedomains.com', '66429 Leroy Place', 'Gainesville', 'Georgia'),
+(42, 'Grantley', 'Phippin', '1972-07-01', '2121074659', 'gphippin15@issuu.com', '2958 Del Sol Trail', 'New York City', 'New York'),
+(43, 'Harriott', 'Cissen', '1981-10-02', '2027419846', 'hcissen16@spiegel.de', '8534 Truax Street', 'Redmond', 'Oregon'),
+(44, 'Niels', 'Moyse', '1961-04-23', '5014090826', 'nmoyse17@w3.org', '4 Main Circle', 'Hot Springs National Park', 'Arkansas'),
+(45, 'Leupold', 'Haitlie', '1974-10-30', '4042363424', 'lhaitlie18@webnode.com', '63539 Mcbride Plaza', 'Atlanta', 'Georgia'),
+(46, 'Jacqueline', 'Blaydon', '1976-11-19', '4251299808', 'jblaydon19@skype.com', '249 Vernon Drive', 'Everett', 'Washington'),
+(11, 'Udall', 'Cardinale', '1956-08-29', '6191305217', 'ucardinalea@deliciousdays.com', '7891 Nancy Hill', 'Redmond', 'Oregon'),
+(48, 'Bartie', 'Foottit', '1985-05-02', '7027442013', 'bfoottit1b@wikipedia.org', '64288 Meadow Ridge Center', 'Las Vegas', 'Nevada'),
+(49, 'Ernestus', 'Rolls', '1960-12-15', '7851587255', 'erolls1c@stumbleupon.com', '4 Vera Plaza', 'Bend', 'Oregon'),
+(50, 'Isabel', 'MacDermott', '1985-08-12', '9798380196', 'imacdermott1d@yahoo.com', '61657 Lakewood Trail', 'Bryan', 'Texas');
 
-INSERT INTO "PILOT_EXAMINER" ("Pid")
+INSERT INTO PILOT_EXAMINER (Pid)
 VALUES
 (49),
 (43),
@@ -202,7 +202,7 @@ VALUES
 (1),
 (22);
 
-INSERT INTO "EXAMINER_AUTHOR" ("Examiner","Cert_type")
+INSERT INTO EXAMINER_AUTHORIZATION (Examiner,Cert_type)
 VALUES
 (49, 1),
 (49, 3),
@@ -227,7 +227,7 @@ VALUES
 (22, 9),
 (22, 8);
 
-INSERT INTO "EMPLOYEE" ("Pid","Hire_date","Ssn") VALUES
+INSERT INTO EMPLOYEE (Pid,Hire_date,Ssn) VALUES
 (31, '2022-05-22', '181059513'),
 (4, '2016-01-30', '373613408'),
 (5, '2010-03-09', '675266049'),
@@ -242,7 +242,7 @@ INSERT INTO "EMPLOYEE" ("Pid","Hire_date","Ssn") VALUES
 (8, '2004-08-12', '384457019'),
 (11, '2010-12-07', '657115885');
 
-INSERT INTO "STUDENT" ("Pid","Date_enrolled") 
+INSERT INTO STUDENT (Pid,Date_enrolled) 
 VALUES
 (14, '2018-09-27'),
 (15, '2021-11-22'),
@@ -276,7 +276,7 @@ VALUES
 (48, '2021-10-02'),
 (50, '2019-10-02');
 
-INSERT INTO "INSTRUCTOR_AUTHORIZATION" ("Instructor","Course_type")
+INSERT INTO INSTRUCTOR_AUTHORIZATION (Instructor,Course_type)
 VALUES
 (3, 1),
 (3, 3),
@@ -301,16 +301,16 @@ VALUES
 (11, 4),
 (11, 5);
 
-INSERT INTO "INSTRUCTOR" ("Pid","Specialization")
+INSERT INTO INSTRUCTOR (Pid,Specialization)
 VALUES
 (6, 'Full down autorotations'),
 (47, 'Aerobatics'),
 (9, 'Spins'),
 (8, 'Flight instructor candidates'),
 (11, 'Flight instructor candidates'),
-(11, 'Full down autorotations');
+(12, 'Full down autorotations');
 
-INSERT INTO "COURSE" ("Cid","Course_type","Start_date","Instructor","Student")
+INSERT INTO COURSE (Cid,Course_type,Start_date,Instructor,Student)
 VALUES
 (1, 12, '2018-10-07', 6, 14),
 (18, 1, '2018-07-30', 3, 34),
@@ -344,7 +344,7 @@ VALUES
 (19, 9, '2018-06-11', 47, 35),
 (16, 11, '2019-12-24', 9, 32);
 
-INSERT INTO "CERTIFICATION" ("Student","Examiner","Cert_type")
+INSERT INTO CERTIFICATION (Student,Examiner,Cert_type)
 VALUES
 (19, 43, 7),
 (20, 21, 9),
@@ -359,7 +359,7 @@ VALUES
 (33, 49, 5),
 (35, 22, 8);
 
-INSERT INTO "CERT_TYPE" ("ID","Name","is_helicopter","is_airplane")
+INSERT INTO CERT_TYPE (Ceid,Name,is_helicopter,is_airplane)
 VALUES
 (2, 'Instrument ', 1, 0),
 (3, 'Commercial ', 1, 0),
@@ -373,7 +373,7 @@ VALUES
 (11, 'Certified Flight Instrument Instructor ', 0, 1),
 (12, 'Airline Transport Pilot', 0, 1);
 
-INSERT INTO "TRAINING_SESSION" ("Instructor","Student","Lesson","Date","Duration","Route","Aircraft")
+INSERT INTO TRAINING_SESSION (Instructor,Student,Lesson,T_date,Duration,Route,Aircraft)
 VALUES
 (3, 34, 14, '2018-07-30', 1.1, 'BDN - DLS - BDN', 'N688M'),
 (6, 14, 3, '2018-10-07', 1.5, 'BDN - S21 - BDN', 'N194LE'),
@@ -382,7 +382,7 @@ VALUES
 (8, 29, 12, '2021-09-17', 1.3, 'BDN - RDM - BDN', 'N219LE'),
 (11, 25, 10, '2022-05-07', 1.8, 'BDN - PDX - BDN', 'N74681');
 
-INSERT INTO "COURSE_TYPE" ("Ctid","Cname","Required_hours","Cost","Cert_type")
+INSERT INTO COURSE_TYPE (Ctid,Cname,Required_hours,Cost,Cert_type)
 VALUES
 (1, 'Private Pilot - Helicopter', 40, 5000, 1),
 (2, 'Instrument Pilot - Helicopter', 35, 8000, 2),
@@ -397,7 +397,7 @@ VALUES
 (11, 'Certified Flight Instrument Instructor - Airplane', 50, 3600, 11),
 (12, 'Airline Transport Pilot - Airplane', 10, 1400, 12);
 
-INSERT INTO "COURSE_LESSONS" ("Course","Lesson")
+INSERT INTO COURSE_LESSONS (Course,Lesson)
 VALUES
 (1, 1),
 (1, 2),
@@ -476,7 +476,7 @@ VALUES
 (12, 10),
 (12, 14);
 
-INSERT INTO "LESSON" ("Lid","Lesson_name")
+INSERT INTO LESSON (Lid,L_name)
 VALUES
 (1, 'Preflight and Postflight'),
 (2, 'Takoffs and Landings'),
@@ -493,7 +493,7 @@ VALUES
 (13, 'In Flight Instructional Methods'),
 (14, 'Advanced Airplane Takeoffs and Landings');
 
-INSERT INTO "LESSON_TASKS" ("Lid","Task_name")
+INSERT INTO LESSON_TASKS (Lid,Task_name)
 VALUES
 (1, 'Preflight Preparation'),
 (1, 'Preflight Procedures'),
@@ -534,7 +534,7 @@ VALUES
 (6, 'Power-Off Approach and Landing'),
 (3, 'Go-Around/Rejected Landing');
 
-INSERT INTO "AIRCRAFT" ("N_Number","Type","Empty_weight","Manufacturer","Model","Seats","Status")
+INSERT INTO AIRCRAFT (N_Number,Type,Empty_weight,Manufacturer,Model,Seats,Status)
 VALUES
 ('N115LE', 'Helicopter', 875, 'Robinson', 'R22', 2, 'Maintenance'),
 ('N117LE', 'Helicopter', 885, 'Robinson', 'R22', 2, 'Operational'),

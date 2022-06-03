@@ -5,7 +5,7 @@
 include './connection.php';
 
 # Else create query
-$query = "SELECT Pid, Fname, Lname, Bday, Phone FROM PERSON;";
+$query = "SELECT Pid, Fname, Lname, Birthday, Phone FROM PERSON;";
 
 include "table_generation.php";
 ?>
