@@ -41,3 +41,4 @@ while ($t = $q->fetch_assoc()) {
 ?>
   </table>
 </div>
+<?php mysqli_close($db) ?>

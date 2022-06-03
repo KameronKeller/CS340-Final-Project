@@ -12,9 +12,3 @@ include 'table_generation.php';
 ?>
 <!-- Footer -->
 <?php include 'footer.php'?>
-
-
-<?php
-#close database connection
-mysqli_close($db)
-?>
