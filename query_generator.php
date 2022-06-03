@@ -1,9 +1,11 @@
 <?php
 include './header.php';
 
+include './connection.php';
 
-print_r($_POST['Query']);
+$query = $_POST['Query'];
 
+include './table_generation.php';
 
 include './footer.php';
 
