@@ -5,7 +5,7 @@
 include './connection.php';
 
 # Else create query
-$query = "SELECT * FROM INSTRUCTOR AS I JOIN PERSON AS P WHERE I.iid=P.pid ;";
+$query = "SELECT * FROM INSTRUCTOR NATURAL JOIN PERSON;";
 
 # Query the database
 include 'table_generation.php';
