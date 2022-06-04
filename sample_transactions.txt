@@ -129,5 +129,23 @@ SELECT P.Lname, P.Fname, TS.Aircraft FROM PERSON AS P, STUDENT AS S, TRAINING_SE
 | Sugden  | Sully    | N74681   |
 +---------+----------+----------+
 
-
+------------------------------------------------------------------------------------------------------------------------------------------
+QUERIES FROM PART 4 SAMPLE DATA:
+------------------------------------------------------------------------------------------------------------------------------------------
+SELECT * FROM AIRCRAFT LIMIT 5;
+SELECT * FROM CERTIFICATION LIMIT 5;
+SELECT * FROM CERT_TYPE LIMIT 5;
+SELECT * FROM COURSE LIMIT 5;
+SELECT * FROM COURSE_LESSONS LIMIT 5;
+SELECT * FROM COURSE_TYPE LIMIT 5;
+SELECT * FROM EMPLOYEE LIMIT 5;
+SELECT * FROM EXAMINER_AUTHORIZATION LIMIT 5;
+SELECT * FROM INSTRUCTOR LIMIT 5;
+SELECT * FROM INSTRUCTOR_AUTHORIZATION LIMIT 5;
+SELECT * FROM LESSON LIMIT 5;
+SELECT * FROM LESSON_TASKS LIMIT 5;
+SELECT * FROM PERSON LIMIT 5;
+SELECT * FROM PILOT_EXAMINER LIMIT 5;
+SELECT * FROM STUDENT LIMIT 5;
+SELECT * FROM TRAINING_SESSION LIMIT 5;
 
