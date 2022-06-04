@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS PERSON;
---Created out of the PERSON entity:
+-- Created out of the PERSON entity;
 CREATE TABLE IF NOT EXISTS PERSON (
   Pid        INTEGER        NOT NULL AUTO_INCREMENT,
   Fname      VARCHAR(30)    NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS PERSON (
   PRIMARY KEY (Pid)
   );
 
---Created from the PILOT EXAMINER entity:
+-- Created from the PILOT EXAMINER entity;
 DROP TABLE IF EXISTS PILOT_EXAMINER;
 CREATE TABLE IF NOT EXISTS PILOT_EXAMINER (
   Pid        INTEGER        NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS PILOT_EXAMINER (
   FOREIGN KEY (Pid) REFERENCES PERSON(Pid)
 );
 
---Created from the CAN_ISSUE relationship:
+-- Created from the CAN_ISSUE relationship;
 DROP TABLE IF EXISTS EXAMINER_AUTHORIZATION;
 CREATE TABLE IF NOT EXISTS EXAMINER_AUTHORIZATION (
   Examiner          INTEGER    NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS EXAMINER_AUTHORIZATION (
   FOREIGN KEY(Cert_type) REFERENCES CERT_TYPE(Ceid)
 );
 
---Created form the employee entity:
+-- Created form the employee entity;
 DROP TABLE IF EXISTS EMPLOYEE;
 CREATE TABLE IF NOT EXISTS EMPLOYEE (
   Pid          INTEGER        NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS EMPLOYEE (
   FOREIGN KEY (Pid) REFERENCES PERSON(Pid)
 );
 
---Created from the student entity:
+-- Created from the student entity;
 DROP TABLE IF EXISTS STUDENT;
 CREATE TABLE IF NOT EXISTS STUDENT (
   Pid                 INTEGER    NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS STUDENT (
   FOREIGN KEY (Pid) REFERENCES PERSON(Pid)  
 );
 
---Created from the CERTIFIED_IN relationship:
+-- Created from the CERTIFIED_IN relationship;
 DROP TABLE IF EXISTS INSTRUCTOR_AUTHORIZATION;
 CREATE TABLE IF NOT EXISTS INSTRUCTOR_AUTHORIZATION (
   Instructor        INT       NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS INSTRUCTOR_AUTHORIZATION (
   FOREIGN KEY (Instructor) REFERENCES INSTRUCTOR(Pid)
 );
 
---Created from the Instructor entity:
+-- Created from the Instructor entity;
 DROP TABLE IF EXISTS INSTRUCTOR;
 CREATE TABLE IF NOT EXISTS INSTRUCTOR (
   Pid            INTEGER        NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS INSTRUCTOR (
   FOREIGN KEY (Pid) REFERENCES EMPLOYEE(Pid)
 );
 
---Created from the course entity:
+-- Created from the course entity;
 DROP TABLE IF EXISTS COURSE;
 CREATE TABLE IF NOT EXISTS COURSE (
   Cid                INTEGER       NOT NULL AUTO_INCREMENT,
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS COURSE (
   FOREIGN KEY (Course_type) REFERENCES COURSE_TYPE(Ctid)
 );
 
---Created from the Certification weak entity:
+-- Created from the Certification weak entity;
 DROP TABLE IF EXISTS CERTIFICATION;
 CREATE TABLE IF NOT EXISTS CERTIFICATION (
   Student        INTEGER      NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS CERTIFICATION (
   FOREIGN KEY (Examiner) REFERENCES PILOT_EXAMINER(Pid)
 );
 
---Created from the CERT_TYPE entity:
+-- Created from the CERT_TYPE entity;
 DROP TABLE IF EXISTS CERT_TYPE;
 CREATE TABLE IF NOT EXISTS CERT_TYPE (
   Ceid             INTEGER        NOT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS CERT_TYPE (
   CHECK (Is_airplane!=Is_helicopter)
 );
 
---Created from the TRAINING_SESSION entity:
+-- Created from the TRAINING_SESSION entity;
 DROP TABLE IF EXISTS TRAINING_SESSION;
 CREATE TABLE IF NOT EXISTS TRAINING_SESSION (
   Instructor        INTEGER        NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS TRAINING_SESSION (
   FOREIGN KEY (Lesson) REFERENCES LESSON(Lid)
 );
 
---Created from the COURSE_TYPE entity:
+-- Created from the COURSE_TYPE entity;
 DROP TABLE IF EXISTS COURSE_TYPE;
 CREATE TABLE IF NOT EXISTS COURSE_TYPE (
   Ctid              INTEGER        NOT NULL AUTO_INCREMENT,
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS COURSE_TYPE (
   FOREIGN KEY (Cert_type) REFERENCES CERT_TYPE(Ceid)
 );
 
---Created from the CONTAINS relationship:
+-- Created from the CONTAINS relationship;
 DROP TABLE IF EXISTS COURSE_LESSON;
 CREATE TABLE IF NOT EXISTS COURSE_LESSONS (
   Course      INTEGER       NOT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS COURSE_LESSONS (
   FOREIGN KEY (Lesson) REFERENCES LESSON(Lid)
 );
 
---Created from the LESSON entity:
+-- Created from the LESSON entity;
 DROP TABLE IF EXISTS LESSON;
 CREATE TABLE IF NOT EXISTS LESSON (
   Lid         INTEGER        NOT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS LESSON (
   PRIMARY KEY (Lid)
 );
 
---Created from the TASKS composite attribute:
+-- Created from the TASKS composite attribute;
 DROP TABLE IF EXISTS LESSON_TASKS;
 CREATE TABLE IF NOT EXISTS LESSON_TASKS (
   Lid        INTEGER         NOT NULL,
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS LESSON_TASKS (
   FOREIGN KEY (Lid) REFERENCES LESSON(Lid)
 );
 
---Created from the aircraft entity, and the disjoint HELI and AIR entities:
+-- Created from the aircraft entity, and the disjoint HELI and AIR entities;
 DROP TABLE IF EXISTS AIRCRAFT;
 CREATE TABLE IF NOT EXISTS AIRCRAFT (
   N_number        VARCHAR(10)        NOT NULL,
