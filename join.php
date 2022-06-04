@@ -21,7 +21,7 @@
         <input class="mb-4" type="text" name="Lname" required><br>
     
         <!--Birthday --> 
-        <label for="Date">Birthdate:</label><br>
+        <label for="Date">Birthday:</label><br>
         <input class="mb-4"type="text" name="Year" placeholder="YYYY" required maxlength="4" minlength="4"><br>
         <input class="mb-4"type="text" name="Month" Placeholder="MM"maxlength="2" minlength="2" required><BR>
         <input type="text" name="Day" Placeholder="DD" maxlength="2" minlength="2" required><br>
