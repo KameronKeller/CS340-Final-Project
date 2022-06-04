@@ -1,3 +1,12 @@
+<!-- 
+Class: CS 340
+Assignment: Final Project
+Authors:
+  Dalton Shults
+  Kameron Keller
+Date: 06/04/2022
+ -->
+
 <?php
 include './header.php';
 ?>
