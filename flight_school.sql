@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS CERT_TYPE (
 -- Created from the TRAINING_SESSION entity;
 DROP TABLE IF EXISTS TRAINING_SESSION;
 CREATE TABLE IF NOT EXISTS TRAINING_SESSION (
-  Instructor        INTEGER        NOT NULL,
+  Instructor        INTEGER,
   Student           INTEGER        NOT NULL,
   Lesson            INTEGER        NOT NULL,
   T_date            DATE           NOT NULL,
