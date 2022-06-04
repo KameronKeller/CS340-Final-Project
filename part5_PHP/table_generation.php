@@ -8,6 +8,12 @@ $q = $db->query($query);
   <table class="table mt-3">
     <thead>
 <?php 
+
+if(!$q) {
+  echo "Error";
+  header("Location: ./error.php");
+}
+
 #Grabbing table col names, and appending them to 
 while ($col = $q->fetch_field()) {
   $name = $col->name;
