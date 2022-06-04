@@ -1,10 +1,55 @@
-Getting the names of the classes that each instructor teaches, ordered by the course name:
-SELECT P.Lname, P.Fname, CT.Cname FROM PERSON AS P, INSTRUCTOR AS I, INSTRUCTOR_AUTHORIZATION AS IA, COURSE_TYPE as CT WHERE P.Pid=I.Pid AND P.Pid=IA.Instructor AND IA.Course_type=CT.Ctid LIMIT 5; 
+CS340
+Final Project
+Authors:
+	Dalton Shults
+	Kameron Keller
+Sample Transactions
 
-Get the names of the students and the name of the courses that they are enrolled in, ordered by the course name
+-------------------------------------------------------------------------------------------------------------------------------------
+1
+-------------------------------------------------------------------------------------------------------------------------------------
++ Description: 
+Getting the names of the classes that each instructor teaches, ordered by the course name:
+
++ Query:
+SELECT P.Lname, P.Fname, CT.Cname FROM PERSON AS P, INSTRUCTOR AS I, INSTRUCTOR_AUTHORIZATION AS IA, COURSE_TYPE as CT WHERE P.Pid=I.Pid AND P.Pid=IA.Instructor AND IA.Course_type=CT.Ctid LIMIT 5;
+
++ Result Set:
++---------+--------+-------------------------------+
+| Lname   | Fname  | Cname                         |
++---------+--------+-------------------------------+
+| Fautly  | Bordie | Private Pilot - Airplane      |
+| Fautly  | Bordie | Instrument Pilot - Airplane   |
+| Fautly  | Bordie | Commercial Pilot - Airplane   |
+| Coulsen | Muffin | Private Pilot - Helicopter    |
+| Coulsen | Muffin | Instrument Pilot - Helicopter |
++---------+--------+-------------------------------+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+2
+-------------------------------------------------------------------------------------------------------------------------------------
++ Description: Get the names of the students and the name of the courses that they are enrolled in, ordered by the course name
+
++ Query: 
 SELECT P.Fname, P.Lname, CT.Cname FROM PERSON AS P, COURSE AS C, STUDENT AS S, COURSE_TYPE AS CT WHERE P.Pid=S.Pid AND C.Student=S.Pid AND C.Course_type=CT.Ctid ORDER BY CT.Cname LIMIT 5;
 
-Get the first name of each student, their examiner, and the certification name they earned, ordered by the certification name.
++ Result Set:
++--------+--------------+------------------------------------+
+| Fname  | Lname        | Cname                              |
++--------+--------------+------------------------------------+
+| Egbert | Favelle      | Airline Transport Pilot - Airplane |
+| Hertha | Kibard       | Airline Transport Pilot - Airplane |
+| Deidre | Giacovetti   | Airline Transport Pilot - Airplane |
+| Cesaro | Pitbladdo    | Airline Transport Pilot - Airplane |
+| Athena | Francescotti | Airline Transport Pilot - Airplane |
++--------+--------------+------------------------------------+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+3
+-------------------------------------------------------------------------------------------------------------------------------------
++ Description: Get the first name of each student, their examiner, and the certification name they earned, ordered by the certification name.
+
++ Query:
 SELECT
 	P1.Fname AS "Student First Name",
 	P2.Fname AS "Examiner First Name", 
@@ -13,15 +58,76 @@ FROM CERTIFICATION as CERT
 JOIN PERSON AS P1 ON CERT.Student = P1.Pid
 JOIN PERSON AS P2 ON CERT.Examiner = P2.Pid
 JOIN CERT_TYPE AS C ON CERT.Cert_type = C.Ceid
-ORDER BY C.name;
+ORDER BY C.name LIMIT 5;
 
-The count of traning sessions each student has had grouped by Lname
++ Result Set:
++--------------------+---------------------+-----------------------------------------+
+| Student First Name | Examiner First Name | Certificate Name                        |
++--------------------+---------------------+-----------------------------------------+
+| Kiah               | Cesya               | Certified Flight Instructor             |
+| Sully              | Ernestus            | Certified Flight Instructor             |
+| Cesaro             | Cesya               | Certified Flight Instrument Instructor  |
+| Adrien             | Ernestus            | Certified Flight Instrument Instructor  |
+| Letizia            | Ernestus            | Certified Flight Instrument Instructor  |
++--------------------+---------------------+-----------------------------------------+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+4
+-------------------------------------------------------------------------------------------------------------------------------------
++ Description: The count of traning sessions each student has had grouped by Lname
+
++ Query:
 SELECT P.Lname, COUNT(P.Lname) FROM PERSON as P, STUDENT AS S, TRAINING_SESSION AS TS WHERE P.Pid=S.Pid AND TS.Student=S.Pid GROUP BY P.Lname; 
 
-Select the names and course IDs of students who are enrolled in courses with overlapping, and those courses contain lesson 6.
-SELECT Fname, Lname, Cid FROM PERSON, STUDENT, COURSE WHERE Student.pid = PERSON.Pid AND STUDENT.Pid = COURSE.Student AND COURSE.Cid IN
++ Result Set
++---------+----------------+
+| Lname   | COUNT(P.Lname) |
++---------+----------------+
+| Binge   |              1 |
+| Favelle |              1 |
+| Gallier |              1 |
+| Shreve  |              1 |
+| Sugden  |              1 |
++---------+----------------+
+-------------------------------------------------------------------------------------------------------------------------------------
+5
+-------------------------------------------------------------------------------------------------------------------------------------
++ Description: Select the names and course IDs of students who are enrolled in courses with overlapping, and those courses contain lesson 6.
+
++ Query:
+SELECT Fname, Lname, Cid AS 'Course ID' FROM PERSON, STUDENT, COURSE WHERE Student.pid = PERSON.Pid AND STUDENT.Pid = COURSE.Student AND COURSE.Cid IN
 	(SELECT A.Course FROM COURSE_LESSONS as A JOIN COURSE_LESSONS as B WHERE A.Course != B.Course AND A.Lesson = B.Lesson AND A.Lesson = 6 GROUP BY A.Course);
 
-BONUS:  
++ Result Set:
++----------+--------------+-----------+
+| Fname    | Lname        | Course ID |
++----------+--------------+-----------+
+| Belia    | Patzelt      |         6 |
+| Lancelot | Emanuele     |         7 |
+| Letizia  | Meaddowcroft |         9 |
+| Sully    | Sugden       |        10 |
+| Cesaro   | Pitbladdo    |        12 |
++----------+--------------+-----------+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+BONUS:
+-------------------------------------------------------------------------------------------------------------------------------------
++ Description: 
 List the students who have had training sessions:
+
++ Query:
 SELECT P.Lname, P.Fname, TS.Aircraft FROM PERSON AS P, STUDENT AS S, TRAINING_SESSION AS TS WHERE P.Pid=S.Pid AND TS.Student=P.Pid ORDER BY P.Fname;
+
++ Result Set:
++---------+----------+----------+
+| Lname   | Fname    | Aircraft |
++---------+----------+----------+
+| Gallier | Allix    | N860CG   |
+| Binge   | Astrix   | N219LE   |
+| Favelle | Egbert   | N194LE   |
+| Toop    | Giustina | N688M    |
+| Sugden  | Sully    | N74681   |
++---------+----------+----------+
+
+
+
