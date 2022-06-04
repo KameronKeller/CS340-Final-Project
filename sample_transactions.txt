@@ -4,8 +4,7 @@ SELECT P.Lname, P.Fname, CT.Cname FROM PERSON AS P, INSTRUCTOR AS I, INSTRUCTOR_
 Get the names of the students and the name of the courses that they are enrolled in, ordered by the course name
 SELECT P.Fname, P.Lname, CT.Cname FROM PERSON AS P, COURSE AS C, STUDENT AS S, COURSE_TYPE AS CT WHERE P.Pid=S.Pid AND C.Student=S.Pid AND C.Course_type=CT.Ctid ORDER BY CT.Cname LIMIT ORDER BY CT.Cname LIMIT 5 ;
 
-List the students who have had training sessions:
-SELECT P.Lname, P.Fname, TS.Aircraft FROM PERSON AS P, STUDENT AS S, TRAINING_SESSION AS TS WHERE P.Pid=S.Pid AND TS.Student=P.Pid ORDER BY P.Fname; 
+ 
 
 The count of traning sessions each student has had grouped by Lname
 SELECT P.Lname, COUNT(P.Lname) FROM PERSON as P, STUDENT AS S, TRAINING_SESSION AS TS WHERE P.Pid=S.Pid AND TS.Student=S.Pid GROUP BY P.Lname; 
@@ -13,3 +12,9 @@ SELECT P.Lname, COUNT(P.Lname) FROM PERSON as P, STUDENT AS S, TRAINING_SESSION 
 Select the names and course IDs of students who are enrolled in courses with overlapping, and those courses contain lesson 6.
 SELECT Fname, Lname, Cid FROM PERSON, STUDENT, COURSE WHERE Student.pid = PERSON.Pid AND STUDENT.Pid = COURSE.Student AND COURSE.Cid IN
 	(SELECT A.Course FROM COURSE_LESSONS as A JOIN COURSE_LESSONS as B WHERE A.Course != B.Course AND A.Lesson = B.Lesson AND A.Lesson = 6 GROUP BY A.Course);
+
+
+
+BONUS:  
+List the students who have had training sessions:
+SELECT P.Lname, P.Fname, TS.Aircraft FROM PERSON AS P, STUDENT AS S, TRAINING_SESSION AS TS WHERE P.Pid=S.Pid AND TS.Student=P.Pid ORDER BY P.Fname;
