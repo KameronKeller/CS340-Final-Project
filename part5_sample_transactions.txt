@@ -98,7 +98,7 @@ WHERE P.Pid=S.Pid AND TS.Student=S.Pid GROUP BY P.Lname;
 -------------------------------------------------------------------------------------------------------------------------------------
 5
 -------------------------------------------------------------------------------------------------------------------------------------
-+ Description: Select the names and course IDs of students who are enrolled in courses with overlapping, and those courses contain lesson 6.
++ Description: Select the names and course IDs of students who are enrolled in courses with overlapping lessons which contain lesson 6.
 
 + Query:
 SELECT Fname, Lname, Cid AS 'Course ID' FROM PERSON, STUDENT, COURSE WHERE Student.pid = PERSON.Pid AND STUDENT.Pid = COURSE.Student AND COURSE.Cid IN
