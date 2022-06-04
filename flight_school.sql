@@ -80,7 +80,8 @@ CREATE TABLE IF NOT EXISTS CERT_TYPE (
   Name             VARCHAR(50)    NOT NULL,
   Is_helicopter    INTEGER        NOT NULL,
   Is_airplane      INTEGER        NOT NULL,
-  PRIMARY KEY (Ceid)
+  PRIMARY KEY (Ceid),
+  CHECK (Is_airplane!=Is_helicopter)
 );
 
 CREATE TABLE IF NOT EXISTS TRAINING_SESSION (
@@ -136,7 +137,8 @@ CREATE TABLE IF NOT EXISTS AIRCRAFT (
   Model           VARCHAR(30)        NOT NULL,
   Seats           INTEGER            NOT NULL,
   Status          VARCHAR(15),
-  PRIMARY KEY (N_number)
+  PRIMARY KEY (N_number),
+  CHECK (Type="Helicopter" OR Type="Airplane")
 );
 
 
