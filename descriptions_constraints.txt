@@ -1,0 +1,94 @@
+Dalton Shults
+Kameron Keller
+CS 340
+Final Project
+-----------------
+Part 1: Entity-Relationship Description
+
+PERSON
+A person contains basic information about an individual and is a superclass for employee, student, and pilot examiner.
+
+EMPLOYEE
+An employee is a subclass of person. They work at the flight school, and with the exception of “instructor” their role is not specified in this model. 
+
+STUDENT
+A student is a subclass of person. They attend the flight school and are working towards earning certifications.
+
+PILOT_EXAMINER
+A pilot examiner is a subclass of person. They do not work for the flight school. They are responsible for evaluating students who are trying to earn certifications.
+
+INSTRUCTOR
+An instructor is a subclass of employee. They have a specialization and are responsible for training students.
+
+COURSE_TYPE
+A course type is a course the flight school offers. It has a required number of flight hours, a cost, and a name.
+
+COURSE
+A course is an instance of a course type. Unlike a traditional school, a course only contains one student, and does not meet at regular times. 
+
+LESSON
+A lesson is made up of individual tasks that are required for a certification type.
+
+CERTIFICATION
+A certification is earned by a student and issued by an examiner.
+
+TRAINING_SESSION
+A training session is scheduled by a student, follows a lesson, and taught by an instructor. It has a flight route, date, and duration.
+
+CERT_TYPE
+A certificate type is the type of certifications available to students.
+
+HELI_CERT
+Helicopter certification is a subclass of certificate type. It specifies that a given certificate is for helicopter use.
+
+AIR_CERT
+Airplane certification is a subclass of certificate type. It specifies that a given certificate is for airplane use.
+
+AIRCRAFT
+An aircraft is used by the flight school for training sessions. It has a registration number (N-Number), a baseline empty weight (used for weight and balance), a manufacturer, a model, a specific number of seats, and a maintenance status (operational or maintenance).
+
+HELICOPTER
+A helicopter is a subclass of aircraft.
+
+AIRPLANE
+An airplane is a subclass of aircraft.
+
+INSTRUCTOR INSTRUCTS COURSE
+An instructor teaches a course to a student. This instructor is the students primary instructor, however a student can take specific lessons with any instructor.
+
+STUDENT ENROLLED COURSE
+A student is enrolled in a course with a primary instructor.
+
+INSTRUCTOR GIVES TRAINING_SESSION
+A qualified instructor can give a student a training session, which covers a specific lesson.
+
+INSTRUCTOR CERTIFIED_IN COURSE_TYPE
+An instructor is only qualified to teach certain course types.
+
+STUDENT ATTENDS TRAINING_SESSION
+A student attends a training session, and in the case of a solo-flight a training session may not have an instructor.
+
+STUDENT, PILOT_EXAMINER EARNS CERTIFICATION
+A student must be tested by a pilot examiner to earn a certification.
+
+PILOT_EXAMINER CAN_ISSUE CERT_TYPE
+A pilot examiner must be authorized to test on specific certification types before they can test students.
+
+COURSE_TYPE COVERS CERT_TYPE
+A course type is designed to prepare students for specific certification types.
+
+COURSE_TYPE CONTAINS LESSON
+A course type contains the lessons needed to teach students what they need to know for certification.
+
+COURSE HAS COURSE_TYPE
+A course is an instance of a course type.
+
+TRAINING_SESSION FOLLOWS LESSON
+A training session follows a specific lesson.
+
+HELICOPTER or AIRPLANE USED_FOR TRAINING_SESSION
+Either a helicopter or an airplane is used for training sessions. A training session can only use one aircraft.
+
+CERTIFICATION OF_TYPE CERT_TYPE
+A certification is an instance of a certificate type, issued to a student.
+
