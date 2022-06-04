@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col d-flex justify-content-left">
       <form action="./joined.php" method="POST" id="form">
-        <label class="pt-3 font-weight-bold" >Contact Info:</label><BR>
+        <label class="pt-3 font-weight-bold" >Name & Birthday:</label><BR>
     
         <!--First Name -->    
         <label for="Fname">First Name:</label><br>
@@ -18,20 +18,19 @@
         
         <!--Last Name --> 
         <label for="Lname">Last Name:</label><br>
-        <input type="text" name="Lname" required><br>
+        <input class="mb-4" type="text" name="Lname" required><br>
     
-        <!--Date --> 
+        <!--Birthday --> 
         <label for="Date">Birthdate:</label><br>
-        <input type="text" name="Bday" placeholder="YYYY-MM-DD (Format must match)" required><br>
-        
-         <!-- Phone Number -->
+        <input class="mb-4"type="text" name="Year" placeholder="YYYY" required maxlength="4" minlength="4"><br>
+        <input class="mb-4"type="text" name="Month" Placeholder="MM"maxlength="2" minlength="2" required><BR>
+        <input type="text" name="Day" Placeholder="DD" maxlength="2" minlength="2" required><br>
+    </div>    
+    <div class="col">     
+    <!-- Phone Number -->
+        <p class="pt-3 font-weight-bold" >Contact Information:</p>
         <label for="Phone_number">Phone Number:</label><br>
         <input type="text" name="Phone" placeholder="1112224444" maxlength="10"   minlength="10" required><br>
-    </div>
-  
-    <div class="col">
-        <!-- Address -->
-        <p class="pt-3 font-weight-bold" >Address:</p>
 
         <!-- Street -->
         <label for="Street">Street: </label><br>
