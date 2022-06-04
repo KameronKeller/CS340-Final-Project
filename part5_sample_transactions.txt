@@ -78,7 +78,7 @@ ORDER BY C.name;
 -------------------------------------------------------------------------------------------------------------------------------------
 4
 -------------------------------------------------------------------------------------------------------------------------------------
-+ Description: The count of traning sessions each student has had grouped by Lname
++ Description: The count of training sessions each student has had grouped by Lname
 
 + Query:
 SELECT P.Lname, COUNT(P.Lname) AS 'Number of Classes' 
