@@ -12,7 +12,9 @@ Sample Transactions
 Getting the names of the classes that each instructor teaches, ordered by the course name:
 
 + Query:
-SELECT P.Lname, P.Fname, CT.Cname FROM PERSON AS P, INSTRUCTOR AS I, INSTRUCTOR_AUTHORIZATION AS IA, COURSE_TYPE as CT WHERE P.Pid=I.Pid AND P.Pid=IA.Instructor AND IA.Course_type=CT.Ctid;
+SELECT P.Lname, P.Fname, CT.Cname 
+FROM PERSON AS P, INSTRUCTOR AS I, INSTRUCTOR_AUTHORIZATION AS IA, COURSE_TYPE as CT 
+WHERE P.Pid=I.Pid AND P.Pid=IA.Instructor AND IA.Course_type=CT.Ctid;
 
 + Result Set:
 +---------+--------+-------------------------------+
@@ -31,7 +33,9 @@ SELECT P.Lname, P.Fname, CT.Cname FROM PERSON AS P, INSTRUCTOR AS I, INSTRUCTOR_
 + Description: Get the names of the students and the name of the courses that they are enrolled in, ordered by the course name
 
 + Query: 
-SELECT P.Fname, P.Lname, CT.Cname FROM PERSON AS P, COURSE AS C, STUDENT AS S, COURSE_TYPE AS CT WHERE P.Pid=S.Pid AND C.Student=S.Pid AND C.Course_type=CT.Ctid ORDER BY CT.Cname;
+SELECT P.Fname, P.Lname, CT.Cname
+FROM PERSON AS P, COURSE AS C, STUDENT AS S, COURSE_TYPE AS CT 
+WHERE P.Pid=S.Pid AND C.Student=S.Pid AND C.Course_type=CT.Ctid ORDER BY CT.Cname;
 
 + Result Set:
 +--------+--------------+------------------------------------+
@@ -77,7 +81,9 @@ ORDER BY C.name;
 + Description: The count of traning sessions each student has had grouped by Lname
 
 + Query:
-SELECT P.Lname, COUNT(P.Lname) FROM PERSON as P, STUDENT AS S, TRAINING_SESSION AS TS WHERE P.Pid=S.Pid AND TS.Student=S.Pid GROUP BY P.Lname; 
+SELECT P.Lname, COUNT(P.Lname) AS 'Number of Classes' 
+FROM PERSON as P, STUDENT AS S, TRAINING_SESSION AS TS 
+WHERE P.Pid=S.Pid AND TS.Student=S.Pid GROUP BY P.Lname; 
 
 + Result Set
 +---------+----------------+
@@ -116,7 +122,9 @@ BONUS:
 List the students who have had training sessions:
 
 + Query:
-SELECT P.Lname, P.Fname, TS.Aircraft FROM PERSON AS P, STUDENT AS S, TRAINING_SESSION AS TS WHERE P.Pid=S.Pid AND TS.Student=P.Pid ORDER BY P.Fname;
+SELECT P.Lname, P.Fname, TS.Aircraft 
+FROM PERSON AS P, STUDENT AS S, TRAINING_SESSION AS TS 
+WHERE P.Pid=S.Pid AND TS.Student=P.Pid ORDER BY P.Fname;
 
 + Result Set:
 +---------+----------+----------+
