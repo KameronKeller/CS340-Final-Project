@@ -586,6 +586,24 @@ VALUES
 ('N4913G', 'Airplane', 1684, 'Cessna', '172', 4, 'Operational'),
 ('N860CG', 'Airplane', 3965, 'Beechcraft', 'Baron', 6, 'Maintenance');
 
+-- ==== Part 4 Queries ====;
+SELECT * FROM AIRCRAFT LIMIT 5;
+SELECT * FROM CERTIFICATION LIMIT 5;
+SELECT * FROM CERT_TYPE LIMIT 5;
+SELECT * FROM COURSE LIMIT 5;
+SELECT * FROM COURSE_LESSONS LIMIT 5;
+SELECT * FROM COURSE_TYPE LIMIT 5;
+SELECT * FROM EMPLOYEE LIMIT 5;
+SELECT * FROM EXAMINER_AUTHORIZATION LIMIT 5;
+SELECT * FROM INSTRUCTOR LIMIT 5;
+SELECT * FROM INSTRUCTOR_AUTHORIZATION LIMIT 5;
+SELECT * FROM LESSON LIMIT 5;
+SELECT * FROM LESSON_TASKS LIMIT 5;
+SELECT * FROM PERSON LIMIT 5;
+SELECT * FROM PILOT_EXAMINER LIMIT 5;
+SELECT * FROM STUDENT LIMIT 5;
+SELECT * FROM TRAINING_SESSION LIMIT 5;
+
  -- ==== DATA SOURCES ====;
  -- Aircraft registration data: https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/releasable_aircraft_download/;
  -- Sample person data: https://www.mockaroo.com/;
