@@ -136,3 +136,49 @@ WHERE P.Pid=S.Pid AND TS.Student=P.Pid ORDER BY P.Fname;
 | Toop    | Giustina | N688M    |
 | Sugden  | Sully    | N74681   |
 +---------+----------+----------+
+<<<<<<< HEAD
+=======
+
+-------------------------------------------------------------------------------------------------------------------------------------
+BONUS:
+-------------------------------------------------------------------------------------------------------------------------------------
++ Description: 
+List the number of courses each student is taking.
+
++ Query:
+SELECT P.Fname, COUNT(CT.Cname) AS 'NUMBER OF COURSES' 
+FROM PERSON as P, Student as S, COURSE AS C, COURSE_TYPE AS CT 
+WHERE P.pid=S.Pid AND S.Pid=C.Student AND CT.Ctid=C.Course_type 
+GROUP BY P.Fname; 
+
++---------+--------+--------+
+| Lname   | NUMBER OF COUSES 
++---------+--------+--------+
+| Adrien  |        1        |
+| Allix   |        1        |
+| Allsun  |        1        |
+| Ardyth  |        1        | 
+| Astrix  |        1        |
++---------+--------+--------+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+QUERIES FROM PART 4 SAMPLE DATA:
+------------------------------------------------------------------------------------------------------------------------------------------
+SELECT * FROM AIRCRAFT LIMIT 5;
+SELECT * FROM CERTIFICATION LIMIT 5;
+SELECT * FROM CERT_TYPE LIMIT 5;
+SELECT * FROM COURSE LIMIT 5;
+SELECT * FROM COURSE_LESSONS LIMIT 5;
+SELECT * FROM COURSE_TYPE LIMIT 5;
+SELECT * FROM EMPLOYEE LIMIT 5;
+SELECT * FROM EXAMINER_AUTHORIZATION LIMIT 5;
+SELECT * FROM INSTRUCTOR LIMIT 5;
+SELECT * FROM INSTRUCTOR_AUTHORIZATION LIMIT 5;
+SELECT * FROM LESSON LIMIT 5;
+SELECT * FROM LESSON_TASKS LIMIT 5;
+SELECT * FROM PERSON LIMIT 5;
+SELECT * FROM PILOT_EXAMINER LIMIT 5;
+SELECT * FROM STUDENT LIMIT 5;
+SELECT * FROM TRAINING_SESSION LIMIT 5;
+
+>>>>>>> refs/remotes/origin/main
